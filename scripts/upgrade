@@ -35,7 +35,7 @@ then
 
 	# Download, check integrity, uncompress and patch the source from app.src
 	# Keep .env and database.sqlite !
-	ynh_setup_source --dest_dir="$install_dir" --keep=".env database/database.sqlite"
+	ynh_setup_source --dest_dir="$install_dir" --full_replace=1 --keep=".env database/database.sqlite"
 
 	# Remove this file as the app is already installed
 	ynh_secure_remove $install_dir/INSTALLING
@@ -43,7 +43,7 @@ fi
 
 # $install_dir will automatically be initialized with some decent 
 # permission by default ... however, you may need to recursively reapply
-# ownership to all files such as after the ynh_setup_source step
+# ownership to all files such as after the ynh_setup_source step --full_replace=1
 chown -R $app:www-data "$install_dir"
 chmod o-rwx "$install_dir" -R
 
